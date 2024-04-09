@@ -282,7 +282,6 @@ class BoTSORT(object):
         refind_stracks = []
         lost_stracks = []
         removed_stracks = []
-
         if len(output_results):
             if output_results.shape[1] == 5:
                 scores = output_results[:, 4]
@@ -326,6 +325,7 @@ class BoTSORT(object):
                 pose_result = pose.run({'img': img, 'bboxes': pose_input}, 32)
                 pose_result = np.concatenate([pose_result[0], np.expand_dims(pose_result[1], axis=2)], axis=2)
                 num_kpts_per_bbox = count_kpts_per_bbox(pose_input, pose_result)
+                new_ratio = all_good_pose_bbox(pose_input, pose_result)
                 detections = [STrack(STrack.tlbr_to_tlwh(tlbr), s, f, {'keypoints': p}, n, img_path) for
                               (tlbr, s, f, p, n) in zip(dets, scores_keep, features_keep, pose_result, num_kpts_per_bbox)]
                 # detections = [STrack(STrack.tlbr_to_tlwh(tlbr), s, f, {'keypoints': p}) for
@@ -531,7 +531,7 @@ class BoTSORT(object):
         output_stracks = [track for track in self.tracked_stracks]
 
 
-        return output_stracks
+        return output_stracks, new_ratio
 
 
 def joint_stracks(tlista, tlistb):
@@ -590,3 +590,28 @@ def count_kpts_per_bbox(pose_input, pose_result):
         num_kpts_per_bbox.append(num)
     
     return np.array(num_kpts_per_bbox)
+
+def all_good_pose_bbox(pose_input, pose_result):
+    new_ratio = [0] * 7
+
+    for bbox in pose_input:
+        x1, y1, x2, y2 = bbox
+        num = 0
+        for kpts in pose_result:
+            keypoints_inside_bbox = kpts[
+            (kpts[:, 0] >= x1) & (kpts[:, 0] <= x2) &
+            (kpts[:, 1] >= y1) & (kpts[:, 1] <= y2) &
+            (kpts[:, 2] >= 0.3)
+            ]
+            if len(keypoints_inside_bbox) == 14:
+                num += 1
+                w, h = x2 - x1, y2 - y1
+                new_ratio[0] = h / w
+                new_ratio[1] = h / (kpts[12, 1] - y1)
+                new_ratio[2] = h / np.mean(kpts[4:7, 1] - y1)
+                new_ratio[3] = h / np.mean(kpts[[8,9], 1] - y1)
+                new_ratio[4] = h / (kpts[13, 1] - y1)
+                new_ratio[5] = h / (kpts[[0,1], 1] - y1)
+                new_ratio[6] = h / (kpts[[2,3], 1] - y1)
+    
+    return np.array(new_ratio)/num

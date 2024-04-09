@@ -94,9 +94,10 @@ def run(args, conf_thres, iou_thres, sources, result_paths, perspective, cam_ids
             img = cv2.imread(img_path)
             read_times.append(time.time() - s)
             
+            ## gamma correction
             # g = 2.0
             # img = img.astype(np.float64)
-            # img = ((img / 255) ** (1 / g)) * 255  # gamma correction
+            # img = ((img / 255) ** (1 / g)) * 255  
             # img = img.astype(np.uint8)
             
             s = time.time()
@@ -104,10 +105,10 @@ def run(args, conf_thres, iou_thres, sources, result_paths, perspective, cam_ids
             # dets = detection(img, conf=conf_thres, iou=iou_thres, classes=0)[0].boxes.data.cpu().numpy()  # run detection model
             det_times.append(time.time() - s)
             s = time.time()
-            online_targets = tracker.update(np.array(dets), img, img_path, reid, pose)  # run tracker
+            online_targets, new_ratio = tracker.update(np.array(dets), img, img_path, reid, pose)  # run tracker
             # online_targets = tracker.update(dets, img, pose)  # run tracker
             tr_times.append(time.time() - s)
-            perspective_transform.run(tracker)  # run perspective transform
+            perspective_transform.run(tracker, new_ratio)  # run perspective transform
 
             # assign global_id to each track for multi-camera tracking
             for t in tracker.tracked_stracks:
