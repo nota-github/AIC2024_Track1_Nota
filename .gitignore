@@ -3,7 +3,6 @@
 *.log
 runs/
 output_videos/
-results/
 videos/
 frames/
 __pycache__/
