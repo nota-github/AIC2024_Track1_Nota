@@ -12,7 +12,7 @@ os.makedirs(f'data/reid_dataset/bounding_box_test', exist_ok=True)
 
 for gt_file in val_gt_files:
     print(gt_file)
-    scene = str(gt_file).split('/')[2]
+    scene = str(gt_file).split('/')[3]
     with open(gt_file, 'r') as f:
         labels = f.readlines()
     obj_id_2_set = {}
