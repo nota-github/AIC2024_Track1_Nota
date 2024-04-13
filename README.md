@@ -14,8 +14,8 @@ cd AIC2024_Track1_Nota
 
 ## Prepare Datasets
 
-The official dataset is available for download at https://www.aicitychallenge.org/2024-data-and-evaluation/, the website of the AI City Challenge. 
-To get the password to download them, you must complete the dataset request form.
+The official dataset is available for download at https://www.aicitychallenge.org/2024-data-and-evaluation/, the website of the AI City Challenge.  
+To get the password to download them, you must complete the dataset request form.  
 (We are not permitted to share the dataset, per the DATASET LICENSE AGREEMENT from the dataset author(s).)
 
 1. After unzipping the dataset zip files, make sure the data structure is as follows:
