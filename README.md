@@ -2,6 +2,8 @@
 
 The official resitory for 8th NVIDIA AI City Challenge (Track1: Multi-Camera People Tracking) from team NetsPresso (Nota Inc.).
 
+![mcpt_fig1](https://github.com/nota-github/AIC2024_Track1_Nota/assets/48690450/05d35d49-a218-452b-8db8-b5524d44a63f)
+
 
 ## Installation
 ```
