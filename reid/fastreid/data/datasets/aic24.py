@@ -27,11 +27,11 @@ class AIC24(ImageDataset):
     # dataset_name = "market1501"
     dataset_name = "aic24"
 
-    def __init__(self, root='/home/workspace/AIC24/MCPT', **kwargs):
+    def __init__(self, root='/workspace/reid_dataset', **kwargs):
         # self.root = osp.abspath(osp.expanduser(root))
         # self.root = root
         # self.dataset_dir = osp.join(self.root, self.dataset_dir)
-        self.dataset_dir = '/home/workspace/AIC24/MCPT'
+        self.dataset_dir = '/workspace/reid_dataset'
 
         # allow alternative directory structure
         self.data_dir = self.dataset_dir
