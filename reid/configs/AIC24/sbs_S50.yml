@@ -1,0 +1,11 @@
+_BASE_: ../Base-SBS.yml
+
+MODEL:
+  BACKBONE:
+    NAME: build_resnest_backbone
+
+DATASETS:
+  NAMES: ("AIC24",)
+  TESTS: ("AIC24",)
+
+OUTPUT_DIR: logs/aic24/sbs_S50
