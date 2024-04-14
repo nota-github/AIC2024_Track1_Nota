@@ -80,7 +80,7 @@ def run(args, conf_thres, iou_thres, sources, result_paths, perspective, cam_ids
             for t in tracker.tracked_stracks:
                 t.t_global_id = id_distributor.assign_id()
             imgs.append(img)
-        if stop: break  # 추가 !!!
+        if stop: break
         
         # second, run multi-camera tracker using above trackers results
         groups = clustering.update(trackers, cur_frame, scene)
