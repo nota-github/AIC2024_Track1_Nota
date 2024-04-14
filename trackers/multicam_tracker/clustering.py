@@ -24,7 +24,7 @@ class Clustering:
         matched_ids = []
         tracker_pairs = list(combinations(trackers, 2))
 
-        if int(scene.split('_')[1]) in range(61, 71) or scene == 'scene_041':
+        if int(scene.split('_')[1]) in range(61, 71):
             hw_thresh, has_points_thresh, has_heads_thresh, num_kpts_thresh = 1.25, 6, -1, 16
             emb_thresh = 0.30
             euc_thresh = 1

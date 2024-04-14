@@ -150,7 +150,7 @@ class MCTracker:
         self.clustering = AgglomerativeClustering(n_clusters=2, affinity='cosine', linkage='average')
         # self.clustering = AgglomerativeClustering(n_clusters=2, metric='cosine', linkage='ward')
 
-        if int(scene.split('_')[1]) in range(61, 71) or scene == 'scene_041':
+        if int(scene.split('_')[1]) in range(61, 71):
             self.emb_thresh = 0.30
             self.euc_thresh = 1.5
             self.refine_1st_emb = 0.325
