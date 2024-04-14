@@ -129,6 +129,5 @@ if __name__ == '__main__':
             'scene_071', 'scene_072', 'scene_073', 'scene_074', 'scene_075', 'scene_076', 'scene_077', 'scene_078', 'scene_079', 'scene_080',
             'scene_081', 'scene_082', 'scene_083', 'scene_084', 'scene_085', 'scene_086', 'scene_087', 'scene_088', 'scene_089', 'scene_090',
             ]
-    scenes = ['scene_041']
     for scene in scenes:
         run(args=args, conf_thres=0.1, iou_thres=0.45, sources=sources[scene], result_paths=result_paths[scene], perspective=scene, cam_ids=cam_ids[scene], scene=scene)
