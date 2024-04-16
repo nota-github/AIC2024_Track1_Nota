@@ -1,5 +1,5 @@
 # extract frames from videos
-python3 tools/extract_frames.py --path data/videos
+python3 tools/extract_frames.py --path data/videos --num-processes 4
 # split ground_truth.txt
 python3 tools/make_labels.py
 # make people detection dataset
