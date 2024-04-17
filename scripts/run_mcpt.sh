@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # run mcpt on test set
 python3 eval_mcpt.py
 

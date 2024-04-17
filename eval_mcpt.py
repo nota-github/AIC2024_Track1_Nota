@@ -18,6 +18,11 @@ import numpy as np
 import argparse
 
 
+def make_parser():
+    parser = argparse.ArgumentParser(description="Run Online MTPC System")
+    parser.add_argument("-s", "--scene", type=str, default=None, help="scene name to inference")
+    return parser.parse_args()
+
 def run(args, conf_thres, iou_thres, sources, result_paths, perspective, cam_ids, scene):
     # detection model initilaize
     if int(scene.split('_')[1]) in range(61,81):
@@ -124,10 +129,17 @@ if __name__ == '__main__':
         'write_vid' : False,  # write result to video
         }
 
-    scenes = [
-            'scene_061', 'scene_062', 'scene_063', 'scene_064', 'scene_065', 'scene_066', 'scene_067', 'scene_068', 'scene_069', 'scene_070',
-            'scene_071', 'scene_072', 'scene_073', 'scene_074', 'scene_075', 'scene_076', 'scene_077', 'scene_078', 'scene_079', 'scene_080',
-            'scene_081', 'scene_082', 'scene_083', 'scene_084', 'scene_085', 'scene_086', 'scene_087', 'scene_088', 'scene_089', 'scene_090',
-            ]
-    for scene in scenes:
+    scene = make_parser().scene
+
+    if scene is not None:
         run(args=args, conf_thres=0.1, iou_thres=0.45, sources=sources[scene], result_paths=result_paths[scene], perspective=scene, cam_ids=cam_ids[scene], scene=scene)
+        
+    else:
+        # run each scene sequentially
+        scenes = [
+                'scene_061', 'scene_062', 'scene_063', 'scene_064', 'scene_065', 'scene_066', 'scene_067', 'scene_068', 'scene_069', 'scene_070',
+                'scene_071', 'scene_072', 'scene_073', 'scene_074', 'scene_075', 'scene_076', 'scene_077', 'scene_078', 'scene_079', 'scene_080',
+                'scene_081', 'scene_082', 'scene_083', 'scene_084', 'scene_085', 'scene_086', 'scene_087', 'scene_088', 'scene_089', 'scene_090',
+                ]
+        for scene in scenes:
+            run(args=args, conf_thres=0.1, iou_thres=0.45, sources=sources[scene], result_paths=result_paths[scene], perspective=scene, cam_ids=cam_ids[scene], scene=scene)

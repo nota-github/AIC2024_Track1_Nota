@@ -7,7 +7,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 def make_parser():
     parser = argparse.ArgumentParser(description="Extract Frames from AIC24 Track1 Videos")
-    parser.add_argument("-p", "--path", type=str, default=None, help="path to AIC24_Track1_MTMC_Tracking folder")
+    parser.add_argument("-p", "--path", type=str, default=None, help="path to AIC24_Track1_MCPT_Tracking folder")
     parser.add_argument("-n", "--num-processes", type=int, default=4, help="number of processes to use")
     return parser.parse_args()
 
