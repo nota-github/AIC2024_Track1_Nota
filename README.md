@@ -92,7 +92,7 @@ bash scripts/run_mcpt.sh
 ```bash 
 bash scripts/run_mcpt_parallel.sh
 ```
-(If errors occur, inference only on the affected scenes separately, then run python3 tools/merge_results.py.)  
+(If errors occur, inference only on the affected scenes separately, then run 'python3 tools/merge_results.py')  
 
 
 The result files will be saved as follows:
