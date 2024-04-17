@@ -40,12 +40,12 @@ AIC2024_Track1_Nota
 ```
 
 2. Generate datasets from videos
-- option1: In case you want to train object detection and re-identification models
+- Option1: In case you want to train object detection and re-identification models
 ```bash 
 bash scripts/generate_all_datasets.sh
 ```
 
-- option2: in case you want to use pre-trained models
+- Option2: In case you want to use pre-trained models
 ```bash 
 bash scripts/generate_only_frames.sh
 ```
@@ -81,8 +81,19 @@ bash scripts/train_reid.sh
 If you want to use pretrained models, please download them from the provided [Google Drive](https://drive.google.com/drive/folders/1f9vTZA336qr9JL8nPbA9fmH5hVU8rcuJ?usp=sharing) and place them in the './pretrained' directory. 
 
 
-## Reproduce MCPT Results
-Run `bash scripts/run_mcpt.sh`  
+## Reproduce MCPT Results 
+- Option1: Inference each scene sequentially
+```bash 
+bash scripts/run_mcpt.sh
+```
+
+- Option2: Inference scenes in parallel (to get a faster results)
+    - modify the 'run_mcpt_parallel.sh' based on the number of available GPUs and the quantity of scenes you wish to process simultaneously.
+```bash 
+bash scripts/run_mcpt_parallel.sh
+```
+(If errors occur, inference only on the affected scenes separately, then run python3 tools/merge_results.py.)  
+
 
 The result files will be saved as follows:
 
