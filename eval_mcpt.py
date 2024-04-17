@@ -65,8 +65,8 @@ def run(args, conf_thres, iou_thres, sources, result_paths, perspective, cam_ids
         
         # first, run trackers each frame independently
         for (img_paths, writer), tracker, perspective_transform, result_list in zip(src_handlers, trackers, perspective_transforms, results_lists):
-            if len(img_paths) == 0 or cur_frame==30:
-            # if len(img_paths) == 0:
+            # if len(img_paths) == 0 or cur_frame==30:
+            if len(img_paths) == 0:
                 stop = True
                 break
             img_path = img_paths.pop(0)
